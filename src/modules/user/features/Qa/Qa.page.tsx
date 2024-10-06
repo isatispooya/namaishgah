@@ -3,9 +3,8 @@ import RandomQuiz from "./Qa.feature";
 import { motion } from "framer-motion";
 
 const QaPage: React.FC = () => {
+  const [showReward, setShowReward] = useState(false);
 
-  const [showReward , setShowReward] = useState(false)
-  
   const iconVariants = {
     initial: { y: 0, rotate: 0, scale: 1 },
     animate: {
@@ -88,9 +87,11 @@ const QaPage: React.FC = () => {
       </motion.div>
 
       <div className="relative bg-white text-gray-700 shadow-2xl rounded-3xl p-10 w-full max-w-2xl transition-all transform rtl z-10">
-        <h1 className="text-3xl font-bold text-center mb-6">آزمون تصادفی</h1>
+        <h1 className="text-3xl font-bold text-center mb-6">تست دانش بورسی</h1>
         <p className="text-right mb-8">
-          سوالات را انتخاب کنید و جواب درست یا غلط را بلافاصله مشاهده کنید
+          این آزمون به‌منظور سنجش اطلاعات شما در زمینه بورس و سرمایه‌گذاری تهیه
+          شده است. با پاسخ به سوالات، می‌توانید دانش خود را ارزیابی کرده و با
+          مفاهیم مختلف بازار سرمایه آشنا شوید
         </p>
         <RandomQuiz />
       </div>
