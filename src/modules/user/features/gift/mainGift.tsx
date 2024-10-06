@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Gift } from "../../types";
+import Gardon from "./gardon";
 
 interface QaAnsewerProps {
   giftData: Gift;
@@ -14,7 +15,18 @@ const GiftReward: React.FC<QaAnsewerProps> = ({
 }) => {
   const { ویسا, بازرگام, مفتول, خاتم, ترمه } = giftData;
 
+  const [actGardon, setActGardon] = useState(false)
+
   const starsCount = correctAnswersCount + 1;
+  if (!actGardon) {
+    return(
+      <div onClick={()=>setActGardon(true)} className="flex items-center justify-center">
+        
+      <Gardon />
+      </div>
+    )
+    
+  }
 
   return (
     <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-white to-blue-400 text-white overflow-hidden p-8">
