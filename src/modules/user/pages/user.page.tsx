@@ -2,21 +2,33 @@ import { useState, useRef, useEffect } from "react";
 import GiftReward from "../features/gift/mainGift";
 import GreetingsSection from "../features/greetings/greetings";
 import QaPage from "../features/Qa/Qa.page";
+import usePostGift from "../service/useGift";
+import { useParams } from "react-router-dom";
+
 
 const UserPage = () => {
   const [goToQa, setGoToQa] = useState(false);
-  const [testFinished, setTestFinished] = useState(false); // Track test completion state
-  const qaRef = useRef<HTMLDivElement | null>(null); // Create a ref for QaPage
+  const [testFinished, setTestFinished] = useState(false);
+  const qaRef = useRef<HTMLDivElement | null>(null);
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+
+  const { uuid } = useParams(); 
+  console.log('uuid',uuid);
+  
+  const { data: giftData, error, isError, mutate } = usePostGift(uuid);
 
   const handleClick = () => {
-  
-    setGoToQa(true); 
+    setGoToQa(true);
   };
 
   const handleTestFinish = () => {
-    setTestFinished(true); 
+    setTestFinished(true);
+    if (uuid) {
+      mutate(correctAnswersCount); 
+    } else {
+      console.error("UUID is missing");
+    }
   };
-
 
   useEffect(() => {
     if (goToQa && qaRef.current) {
@@ -28,13 +40,16 @@ const UserPage = () => {
     <>
       {!goToQa && !testFinished && (
         <GreetingsSection handleClick={handleClick} />
-      )} {/* Hide GreetingsSection when goToQa is true */}
-      {!testFinished && goToQa && (
-        <div ref={qaRef}>
-          <QaPage onFinishTest={handleTestFinish} /> {/* Pass onFinishTest to QaPage */}
-        </div>
       )}
-      {testFinished && <GiftReward />} 
+      {!testFinished && goToQa && (
+        <QaPage
+          onFinishTest={handleTestFinish}
+          correctAnswersCount={correctAnswersCount}
+          setCorrectAnswersCount={setCorrectAnswersCount}
+        />
+      )}
+      {testFinished && giftData && <GiftReward giftData={giftData} />}
+      {isError && <div>Error occurred: {error?.message}</div>}
     </>
   );
 };

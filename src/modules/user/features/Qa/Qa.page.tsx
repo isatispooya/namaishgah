@@ -3,9 +3,12 @@ import RandomQuiz from "./Qa.feature";
 import { motion } from "framer-motion";
 
 interface QaPageProps {
-  onFinishTest: () => void; // Define the prop for finishing the test
-}
-const QaPage: React.FC<QaPageProps> = ({ onFinishTest }) => {
+  onFinishTest: () => void;
+  setCorrectAnswersCount:()=>number
+  correctAnswersCount:number
+  }
+
+const QaPage: React.FC<QaPageProps> = ({ onFinishTest ,correctAnswersCount,setCorrectAnswersCount}) => {
   const iconVariants = {
     initial: { y: 0, rotate: 0, scale: 1 },
     animate: {
@@ -94,7 +97,7 @@ const QaPage: React.FC<QaPageProps> = ({ onFinishTest }) => {
           شده است. با پاسخ به سوالات، می‌توانید دانش خود را ارزیابی کرده و با
           مفاهیم مختلف بازار سرمایه آشنا شوید
         </p>
-        <RandomQuiz onFinishTest={onFinishTest} /> 
+        <RandomQuiz onFinishTest={onFinishTest} correctAnswersCount={correctAnswersCount} setCorrectAnswersCount={setCorrectAnswersCount}/> 
       </div>
     </div>
   );

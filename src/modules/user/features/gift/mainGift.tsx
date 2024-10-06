@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { FaStar } from "react-icons/fa";
-
-const GiftReward: React.FC = () => {
+import { Gift } from "../../types";
+interface QaAnsewerProps {
+  giftData: Gift;
+}
+const GiftReward: React.FC<QaAnsewerProps> = (giftData) => {
+  console.log(giftData);
+  
   return (
     <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-white to-blue-400 text-white overflow-hidden p-8">
       <div className="relative z-10 bg-white rounded-lg shadow-lg p-12 max-w-2xl w-full text-gray-800">
@@ -21,7 +26,7 @@ const GiftReward: React.FC = () => {
           animate={{ y: [0, -10, 0], x: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
         ></motion.div>
-        
+
         <motion.div
           className="flex justify-center mb-6"
           initial={{ opacity: 0, y: -10 }}
