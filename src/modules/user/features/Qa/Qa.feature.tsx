@@ -223,17 +223,34 @@ const RandomQuiz: React.FC = () => {
             )}
 
             {showNextButton &&
-              currentQuestionIndex < selectedQuestions.length - 1 && (
+              currentQuestionIndex < selectedQuestions.length - 1 ? (
+              <motion.button
+                className="mt-6 px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
+                onClick={handleNextQuestion}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                سوال بعدی
+              </motion.button>
+            ) : (
+              showNextButton &&
+              currentQuestionIndex === selectedQuestions.length - 1 && (
                 <motion.button
-                  className="mt-6 px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
-                  onClick={handleNextQuestion}
+                  className="mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300"
+                  onClick={() => {
+                    alert(
+                      `آزمون به پایان رسید! تعداد پاسخ‌های درست: ${correctAnswersCount}`
+                    );
+                  }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
-                  سوال بعدی
+                  پایان آزمون و دیدن نتایج
                 </motion.button>
-              )}
+              )
+            )}
           </motion.div>
         )}
     </div>
