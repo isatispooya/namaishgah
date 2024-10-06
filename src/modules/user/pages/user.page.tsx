@@ -3,19 +3,26 @@ import GiftReward from "../features/gift/mainGift";
 import GreetingsSection from "../features/greetings/greetings";
 import QaPage from "../features/Qa/Qa.page";
 import usePostGift from "../service/useGift";
-import { useParams } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
+import useGetValidation from "../hooks/useGetValidation";
 
 const UserPage = () => {
   const [goToQa, setGoToQa] = useState(false);
   const [testFinished, setTestFinished] = useState(false);
   const qaRef = useRef<HTMLDivElement | null>(null);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  const navigate = useNavigate();
 
-  const { uuid } = useParams(); 
-  console.log('uuid',uuid);
-  
+  const { uuid } = useParams();
+  console.log("uuid", uuid);
+
   const { data: giftData, error, isError, mutate } = usePostGift(uuid);
+
+  const { isError: notValidate } = useGetValidation(uuid || "");
+
+  if (notValidate) {
+    navigate("/");
+  }
 
   const handleClick = () => {
     setGoToQa(true);
@@ -24,7 +31,7 @@ const UserPage = () => {
   const handleTestFinish = () => {
     setTestFinished(true);
     if (uuid) {
-      mutate(correctAnswersCount); 
+      mutate(correctAnswersCount);
     } else {
       console.error("UUID is missing");
     }
