@@ -1,12 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
 import { getCookie } from "../../cookie";
 import { AdminValid } from "../data";
 import { useNavigate } from "react-router-dom";
+import useAddClient from "../services/useAddClient";
 
 const AddClient: React.FC = () => {
   const [mobileNumber, setMobileNumber] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+
   const navigate = useNavigate();
+  const { mutate } = useAddClient();
 
   const admin = JSON.parse(getCookie("admin"));
   useEffect(() => {
@@ -26,8 +30,19 @@ const AddClient: React.FC = () => {
       return;
     }
 
-    alert(`شماره موبایل ارسال شد: ${mobileNumber}`);
-    setErrorMessage("");
+    mutate(mobileNumber, {
+      onSuccess: () => {
+        setErrorMessage("");
+        alert("شماره موبایل با موفقیت ثبت شد");
+      },
+      onError: (error: any) => {
+        if (error.response && error.response.data && error.response.data.error) {
+          setErrorMessage(error.response.data.error);
+        } else {
+          setErrorMessage("خطایی رخ داده است");
+        }
+      },
+    });
   };
 
   return (
