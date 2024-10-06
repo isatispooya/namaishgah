@@ -1,12 +1,11 @@
-
+import Greetings from "./modules/greetings/features/banner";
 
 function App() {
-
   return (
     <>
-      <div>jughfjuhurf</div>
+      <Greetings/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
