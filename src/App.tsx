@@ -1,11 +1,15 @@
-import Greetings from "./modules/greetings/features/banner";
+import LoginPage from "./modules/admin/pages/Login.page";
+import GreetingsSection from "./modules/greetings/features/banner";
+
 
 function App() {
   return (
-    <>
-      <Greetings/>
-    </>
-  );
+    <div className="App">
+      <LoginPage/>
+      <GreetingsSection logoSrc={""} companyName={""} description={""}/>
+  </div>
+  )
+  
 }
 
 export default App;
