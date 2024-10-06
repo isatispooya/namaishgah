@@ -2,7 +2,13 @@ import { motion } from "framer-motion";
 import React from "react";
 import Logoa from "../../../../../public/bahar.png";
 
-const GreetingsSection: React.FC = () => {
+
+const GreetingsSection: React.FC = ({handleClick}) => {
+
+
+ 
+
+
   const circleVariants = {
     animate: {
       scale: [1, 1.4, 1],
@@ -79,6 +85,7 @@ const GreetingsSection: React.FC = () => {
           transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={handleClick}
         >
           شروع کنید
         </motion.button>
