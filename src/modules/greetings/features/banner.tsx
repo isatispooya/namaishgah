@@ -3,13 +3,42 @@ import React from 'react';
 import Logoa from '../../../../public/bahar.png';
 
 const GreetingsSection: React.FC = () => {
-  return (
-    <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-blue-200 to-blue-600 text-white overflow-hidden">
-      {/* Background Circles */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-blue-200 rounded-full opacity-20 animate-ping"></div>
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-400 rounded-full opacity-20 animate-ping"></div>
+  const circleVariants = {
+    animate: {
+      scale: [1, 1.4, 1],
+      opacity: [0.4, 0.7, 0.4],
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    },
+  };
 
-      {/* Company Logo Animation */}
+  const lowerCircleVariants = {
+    animate: {
+      opacity: [0.6, 0.8, 0.6],
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
+  return (
+    <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-white to-blue-400 text-white overflow-hidden">
+      <motion.div
+        className="absolute top-20 left-20 w-40 h-40 bg-gradient-to-r from-purple-300 to-purple-500 rounded-full shadow-lg"
+        variants={circleVariants}
+        animate="animate"
+      ></motion.div>
+      <motion.div
+        className="absolute bottom-10 right-10 w-32 h-32 bg-white rounded-full shadow-lg"
+        variants={lowerCircleVariants}
+        animate="animate"
+      ></motion.div>
+
       <motion.img
         src={Logoa}
         alt="Company Logo"
@@ -17,10 +46,11 @@ const GreetingsSection: React.FC = () => {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
+        whileHover={{ scale: 1.1, rotate: 10 }}
+        whileTap={{ scale: 0.95 }}
       />
 
-      <div dir='rtl' className="flex flex-col items-center md:items-start text-center md:text-left z-10 mt-6 md:mt-0">
-        {/* Title Animation */}
+      <div dir="rtl" className="flex flex-col items-center md:items-start text-center md:text-left z-10 mt-6 md:mt-0">
         <motion.h1
           className="text-4xl md:text-5xl font-extrabold mb-4 tracking-wide"
           initial={{ opacity: 0, y: -20 }}
@@ -30,7 +60,6 @@ const GreetingsSection: React.FC = () => {
           isatispooya
         </motion.h1>
 
-        {/* Short Description Animation */}
         <motion.p
           className="text-lg md:text-xl leading-relaxed max-w-lg"
           initial={{ opacity: 0, y: 20 }}
@@ -40,7 +69,6 @@ const GreetingsSection: React.FC = () => {
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.
         </motion.p>
 
-        {/* Call to Action Button */}
         <motion.button
           className="mt-8 px-6 py-3 bg-teal-500 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-teal-600 transition-all duration-300 ease-in-out"
           initial={{ opacity: 0, y: 20 }}

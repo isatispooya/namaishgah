@@ -1,90 +1,97 @@
 import React from "react";
 import RandomQuiz from "../features/Qa.feature";
+import { motion } from "framer-motion";
 
 const QaPage: React.FC = () => {
+  // انیمیشن برای آیکون‌ها
+  const iconVariants = {
+    initial: { y: 0, rotate: 0, scale: 1 },
+    animate: {
+      y: [-20, 20, -20],
+      rotate: [0, 20, 0],
+      scale: [1, 1.1, 1],
+      transition: {
+        duration: 6,
+        ease: "easeInOut",
+        repeat: Infinity,
+      },
+    },
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center p-5 relative overflow-hidden">
-      <style>{`
-        @keyframes moveIcons {
-          0% {
-            transform: translateY(0) rotate(0deg) scale(1);
-          }
-          50% {
-            transform: translateY(-50px) rotate(20deg) scale(1.1);
-          }
-          100% {
-            transform: translateY(0) rotate(0deg) scale(1);
-          }
-        }
+    <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-white to-blue-400 text-white overflow-hidden p-8">
+      {/* آیکون‌های متحرک در اطراف صفحه */}
+      <motion.div
+        className="absolute text-[80px] text-blue-300 opacity-40 top-10 left-5"
+        variants={iconVariants}
+        initial="initial"
+        animate="animate"
+      >
+        ❓
+      </motion.div>
+      <motion.div
+        className="absolute text-[80px] text-blue-400 opacity-40 top-10 right-5"
+        variants={iconVariants}
+        initial="initial"
+        animate="animate"
+      >
+        ✔️
+      </motion.div>
+      <motion.div
+        className="absolute text-[80px] text-blue-500 opacity-40 bottom-10 left-5"
+        variants={iconVariants}
+        initial="initial"
+        animate="animate"
+      >
+        ❌
+      </motion.div>
+      <motion.div
+        className="absolute text-[80px] text-blue-600 opacity-40 bottom-10 right-5"
+        variants={iconVariants}
+        initial="initial"
+        animate="animate"
+      >
+        ❓
+      </motion.div>
+      <motion.div
+        className="absolute text-[80px] text-blue-300 opacity-40 top-1/2 left-2 transform -translate-y-1/2"
+        variants={iconVariants}
+        initial="initial"
+        animate="animate"
+      >
+        ✔️
+      </motion.div>
+      <motion.div
+        className="absolute text-[80px] text-blue-500 opacity-40 top-1/2 right-2 transform -translate-y-1/2"
+        variants={iconVariants}
+        initial="initial"
+        animate="animate"
+      >
+        ❌
+      </motion.div>
+      <motion.div
+        className="absolute text-[80px] text-blue-300 opacity-40 top-2 left-1/2 transform -translate-x-1/2"
+        variants={iconVariants}
+        initial="initial"
+        animate="animate"
+      >
+        ❓
+      </motion.div>
+      <motion.div
+        className="absolute text-[80px] text-blue-400 opacity-40 bottom-2 left-1/2 transform -translate-x-1/2"
+        variants={iconVariants}
+        initial="initial"
+        animate="animate"
+      >
+        ✔️
+      </motion.div>
 
-        .icon {
-          position: absolute;
-          font-size: 80px;
-          opacity: 0.1;
-          animation: moveIcons 6s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
-          filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.1));
-        }
-
-        /* موقعیت دادن به آیکون‌ها دور تا دور صفحه */
-        .top-left {
-          top: 10%;
-          left: 5%;
-        }
-
-        .top-right {
-          top: 10%;
-          right: 5%;
-        }
-
-        .bottom-left {
-          bottom: 10%;
-          left: 5%;
-        }
-
-        .bottom-right {
-          bottom: 10%;
-          right: 5%;
-        }
-
-        .middle-left {
-          top: 50%;
-          left: 2%;
-          transform: translateY(-50%);
-        }
-
-        .middle-right {
-          top: 50%;
-          right: 2%;
-          transform: translateY(-50%);
-        }
-
-        .top-middle {
-          top: 2%;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-
-        .bottom-middle {
-          bottom: 2%;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-      `}</style>
-
-      <div className="icon top-left">❓</div> 
-      <div className="icon top-right">✔️</div> 
-      <div className="icon bottom-left">❌</div> 
-      <div className="icon bottom-right">❓</div> 
-      <div className="icon middle-left">✔️</div> 
-      <div className="icon middle-right">❌</div> 
-      <div className="icon top-middle">❓</div> 
-      <div className="icon bottom-middle">✔️</div> 
-
-      <div className="relative bg-white shadow-2xl rounded-3xl p-10 w-full max-w-2xl transition-all transform rtl z-10">
-        <h1 className="text-3xl font-bold text-center mb-6 text-gray-700">
+      {/* باکس آزمون */}
+      <div className="relative bg-white text-gray-700 shadow-2xl rounded-3xl p-10 w-full max-w-2xl transition-all transform rtl z-10">
+        <h1 className="text-3xl font-bold text-center mb-6">
           آزمون تصادفی
         </h1>
-        <p className="text-right text-gray-500 mb-8">
+        <p className="text-right mb-8">
           سوالات را انتخاب کنید و جواب درست یا غلط را بلافاصله مشاهده کنید
         </p>
         <RandomQuiz />
