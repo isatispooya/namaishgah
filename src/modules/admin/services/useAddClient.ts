@@ -8,17 +8,12 @@ const addClient = async (mobile: string): Promise<User> => {
 };
 
 const useAddClient = () => {
-    console.log('ddd',import.meta.env.VITE_BASE_URL);
     
   const { mutate, data } = useMutation({
     mutationKey: ['mobile'],
     mutationFn: (mobile: string) => addClient(mobile),  
-    onSuccess: (data) => {
-      console.log('Success:', data);
-    },
-    onError: (error) => {
-      console.log('Error:', error);
-    },
+   
+    
   });
 
   return {
