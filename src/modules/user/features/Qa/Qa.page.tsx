@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import RandomQuiz from "./Qa.feature";
 import { motion } from "framer-motion";
 
-const QaPage: React.FC = () => {
-
-  const [showReward , setShowReward] = useState(false)
-  
+interface QaPageProps {
+  onFinishTest: () => void; // Define the prop for finishing the test
+}
+const QaPage: React.FC<QaPageProps> = ({ onFinishTest }) => {
   const iconVariants = {
     initial: { y: 0, rotate: 0, scale: 1 },
     animate: {
@@ -92,7 +92,7 @@ const QaPage: React.FC = () => {
         <p className="text-right mb-8">
           سوالات را انتخاب کنید و جواب درست یا غلط را بلافاصله مشاهده کنید
         </p>
-        <RandomQuiz />
+        <RandomQuiz onFinishTest={onFinishTest} /> 
       </div>
     </div>
   );
