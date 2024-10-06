@@ -3,7 +3,7 @@ import React from "react";
 import Logoa from "../../../public/bahar.png";
 
 
-const HomePage: React.FC<HTMLFormElement> = () => {
+const HomePage: React.FC = () => {
   const circleVariants = {
     animate: {
       scale: [1, 1.4, 1],
@@ -65,7 +65,7 @@ const HomePage: React.FC<HTMLFormElement> = () => {
         </motion.h1>
 
         <motion.p
-          className="text-lg md:text-xl leading-relaxed max-w-lg "
+          className="text-lg font-bold md:text-xl leading-relaxed max-w-lg "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 1, ease: "easeOut" }}
