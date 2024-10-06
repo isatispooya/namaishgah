@@ -1,12 +1,18 @@
 import { motion } from "framer-motion";
 import React from "react";
 import Logoa from "../../../../../public/bahar.png";
+import useGetValidation from "../../hooks/useGetValidation";
+import { useParams } from "react-router-dom";
 
 interface GreetingsSectionProps {
   handleClick: React.Dispatch<React.SetStateAction<void>>;
 }
 
+
 const GreetingsSection: React.FC<GreetingsSectionProps> = ({ handleClick }) => {
+  const { uuid } = useParams<{ uuid: string }>();
+  const { isError: notValidate } = useGetValidation(uuid || "");
+  
   const circleVariants = {
     animate: {
       scale: [1, 1.4, 1],
@@ -76,17 +82,21 @@ const GreetingsSection: React.FC<GreetingsSectionProps> = ({ handleClick }) => {
           گروه مالی و سرمایه گذاری
         </motion.p>
 
-        <motion.button
-          className="mt-8 px-6 py-3 bg-teal-500 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-teal-600 transition-all duration-300 ease-in-out"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleClick}
-        >
-          شروع کنید
-        </motion.button>
+        {notValidate ? (
+          <p>برای شرکت در قرعه کشی به غرفه ایساتیس پویا مراجعه کنید</p>
+        ) : (
+          <motion.button
+            className="mt-8 px-6 py-3 bg-teal-500 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-teal-600 transition-all duration-300 ease-in-out"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleClick}
+          >
+            شروع کنید
+          </motion.button>
+        )}
       </div>
     </div>
   );
