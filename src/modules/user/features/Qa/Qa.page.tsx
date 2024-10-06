@@ -95,12 +95,7 @@ const QaPage: React.FC<QaPageProps> = ({
       </motion.div>
 
       <div className="relative bg-white text-gray-700 shadow-2xl rounded-3xl p-10 w-full max-w-2xl transition-all transform rtl z-10">
-        <h1 className="text-3xl font-bold text-center mb-6">تست دانش بورسی</h1>
-        <p className="text-right mb-8">
-          این آزمون به‌منظور سنجش اطلاعات شما در زمینه بورس و سرمایه‌گذاری تهیه
-          شده است. با پاسخ به سوالات، می‌توانید دانش خود را ارزیابی کرده و با
-          مفاهیم مختلف بازار سرمایه آشنا شوید
-        </p>
+        <h1 className="text-3xl font-bold text-center mb-6">سواد مالی</h1>
         <RandomQuiz
           onFinishTest={onFinishTest}
           correctAnswersCount={correctAnswersCount}

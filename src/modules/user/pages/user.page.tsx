@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import GiftReward from "../features/gift/mainGift";
@@ -6,7 +5,6 @@ import GreetingsSection from "../features/greetings/greetings";
 import QaPage from "../features/Qa/Qa.page";
 import usePostGift from "../service/useGift";
 import { useNavigate, useParams } from "react-router-dom";
-
 
 const UserPage = () => {
   const [goToQa, setGoToQa] = useState(false);
@@ -17,10 +15,6 @@ const UserPage = () => {
 
   const { uuid } = useParams<{ uuid: string }>();
   const { data: giftData, error, isError, mutate } = usePostGift(uuid);
-
-
-
-
 
   const handleClick = () => {
     setGoToQa(true);
@@ -36,7 +30,6 @@ const UserPage = () => {
           }
         },
       });
-      mutate(correctAnswersCount);
     } else {
       console.error("UUID is missing");
     }
@@ -60,7 +53,7 @@ const UserPage = () => {
           setCorrectAnswersCount={setCorrectAnswersCount}
         />
       )}
-      {testFinished && giftData && <GiftReward giftData={giftData} correctAnswersCount={correctAnswersCount}  />}
+      {testFinished && giftData && <GiftReward giftData={giftData} correctAnswersCount={correctAnswersCount} />}
       {isError && <div>Error occurred: {error?.message}</div>}
     </>
   );

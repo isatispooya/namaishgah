@@ -9,6 +9,7 @@ interface RandomQuizProps {
   setCorrectAnswersCount: React.Dispatch<React.SetStateAction<number>>;
   correctAnswersCount: number;
 }
+
 const RandomQuiz: React.FC<RandomQuizProps> = ({
   onFinishTest,
   correctAnswersCount,
@@ -169,27 +170,34 @@ const RandomQuiz: React.FC<RandomQuizProps> = ({
             <div className="answer-options flex flex-col justify-center gap-y-3">
               {selectedQuestions[currentQuestionIndex].answer.map(
                 (answer, answerIndex) => {
-                  const isCorrect =
-                    selectedQuestions[currentQuestionIndex].answer[answerIndex]
-                      .correct;
+                  const isCorrect = answer.correct;
                   const isSelected =
                     selectedAnswers[currentQuestionIndex] === answer.content;
+
+                  const shouldHighlightCorrect =
+                    !isSelected &&
+                    results[currentQuestionIndex] === false &&
+                    isCorrect;
 
                   return (
                     <motion.button
                       key={answerIndex}
-                      className={`px-4 py-2 rounded-md text-sm flex-1 shadow-sm flex items-center justify-center text-center transition-all duration-300 ease-in-out ${
-                        isSelected
-                          ? isCorrect
-                            ? "bg-green-500 text-white"
-                            : "bg-red-500 text-white"
-                          : "bg-blue-500 text-white hover:bg-blue-600"
-                      } ${
-                        selectedAnswers[currentQuestionIndex] !== undefined &&
-                        !isSelected
-                          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                          : ""
-                      }`}
+                      className={`px-4 py-2 rounded-md text-sm flex-1 shadow-sm flex items-center justify-center text-center transition-all duration-300 ease-in-out
+                        ${
+                          isSelected
+                            ? isCorrect
+                              ? "bg-green-500 text-white"
+                              : "bg-red-500 text-white"
+                            : "bg-blue-500 text-white hover:bg-blue-600"
+                        }
+                        ${
+                          selectedAnswers[currentQuestionIndex] !== undefined &&
+                          !isSelected
+                            ? shouldHighlightCorrect
+                              ? "bg-green-500 text-white"
+                              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                            : ""
+                        }`}
                       disabled={
                         selectedAnswers[currentQuestionIndex] !== undefined
                       }
@@ -213,27 +221,10 @@ const RandomQuiz: React.FC<RandomQuizProps> = ({
               )}
             </div>
 
-            {results[currentQuestionIndex] !== undefined && (
-              <motion.p
-                className={`mt-4 text-md font-medium ${
-                  results[currentQuestionIndex]
-                    ? "text-green-700"
-                    : "text-red-700"
-                }`}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                {results[currentQuestionIndex]
-                  ? "پاسخ صحیح است"
-                  : "پاسخ غلط است"}
-              </motion.p>
-            )}
-
             {showNextButton &&
             currentQuestionIndex < selectedQuestions.length - 1 ? (
               <motion.button
-                className="mt-6 px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
+                className="mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300"
                 onClick={handleNextQuestion}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -253,7 +244,7 @@ const RandomQuiz: React.FC<RandomQuizProps> = ({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
-                  پایان آزمون و دیدن نتایج
+                  نتایج
                 </motion.button>
               )
             )}
