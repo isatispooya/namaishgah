@@ -1,11 +1,12 @@
+import LoginPage from "./modules/admin/pages/login.page"
 
 
 function App() {
 
   return (
-    <>
-      <div>jughfjuhurf</div>
-    </>
+    <div className="App">
+      <LoginPage/>
+  </div>
   )
 }
 
