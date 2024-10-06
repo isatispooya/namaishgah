@@ -1,12 +1,9 @@
-
-
 function App() {
-
   return (
     <>
-      <div>jughfjuhurf</div>
+      <h1>aaaaaaa</h1>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
