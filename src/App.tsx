@@ -1,7 +1,9 @@
+import Greetings from "./modules/greetings/features/banner";
+
 function App() {
   return (
     <>
-      <h1>aaaaaaa</h1>
+      <Greetings/>
     </>
   );
 }
