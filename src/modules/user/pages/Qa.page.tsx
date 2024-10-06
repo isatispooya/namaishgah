@@ -4,7 +4,6 @@ import RandomQuiz from "../features/Qa.feature";
 const QaPage: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-5 relative overflow-hidden">
-      {/* استایل‌ها */}
       <style>{`
         @keyframes moveIcons {
           0% {
@@ -72,17 +71,15 @@ const QaPage: React.FC = () => {
         }
       `}</style>
 
-      {/* آیکون‌های متحرک در اطراف صفحه */}
-      <div className="icon top-left">❓</div> {/* علامت سوال */}
-      <div className="icon top-right">✔️</div> {/* علامت تیک */}
-      <div className="icon bottom-left">❌</div> {/* علامت ضربدر */}
-      <div className="icon bottom-right">❓</div> {/* علامت سوال */}
-      <div className="icon middle-left">✔️</div> {/* علامت تیک */}
-      <div className="icon middle-right">❌</div> {/* علامت ضربدر */}
-      <div className="icon top-middle">❓</div> {/* علامت سوال */}
-      <div className="icon bottom-middle">✔️</div> {/* علامت تیک */}
+      <div className="icon top-left">❓</div> 
+      <div className="icon top-right">✔️</div> 
+      <div className="icon bottom-left">❌</div> 
+      <div className="icon bottom-right">❓</div> 
+      <div className="icon middle-left">✔️</div> 
+      <div className="icon middle-right">❌</div> 
+      <div className="icon top-middle">❓</div> 
+      <div className="icon bottom-middle">✔️</div> 
 
-      {/* باکس آزمون */}
       <div className="relative bg-white shadow-2xl rounded-3xl p-10 w-full max-w-2xl transition-all transform rtl z-10">
         <h1 className="text-3xl font-bold text-center mb-6 text-gray-700">
           آزمون تصادفی
