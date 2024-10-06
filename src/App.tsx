@@ -1,15 +1,23 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./modules/admin/pages/Login.page";
-import GreetingsSection from "./modules/greetings/features/banner";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AddClient from "./modules/admin/featuers/AddClient";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
     <div className="App">
-      <LoginPage/>
-      <GreetingsSection logoSrc={""} companyName={""} description={""}/>
-  </div>
-  )
-  
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/admin" element={<LoginPage />} />
+            <Route path="/admin/addclient" element={<AddClient />} />
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </div>
+  );
 }
 
 export default App;
