@@ -4,6 +4,7 @@ import QaPage from "../features/Qa/Qa.page";
 
 
 const UserPage = () => {
+  
   return (
     <>
       <GreetingsSection />
