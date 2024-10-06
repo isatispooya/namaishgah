@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
+import { FaStar } from 'react-icons/fa';
 
 const GiftReward: React.FC = () => {
   return (
@@ -24,16 +25,24 @@ const GiftReward: React.FC = () => {
         ></motion.div>
 
         {/* Reward Title */}
+                <motion.div
+          className="flex justify-center mb-6"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 1, ease: 'easeOut' }}
+        >
+          {[...Array(3)].map((_, index) => (
+            <FaStar key={index} className="text-yellow-500  mx-1 text-5xl" />
+          ))}
+        </motion.div>
         <motion.h2
-          className="text-4xl font-bold mb-6 text-center"
+          className="text-4xl font-bold mb-4 text-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1, ease: 'easeOut' }}
         >
           Congratulations! You've Earned a Reward!
         </motion.h2>
-     
-        {/* Reward Details Table */}
         <motion.table
           className="w-full text-left mb-6"
           initial={{ opacity: 0 }}
@@ -42,8 +51,8 @@ const GiftReward: React.FC = () => {
         >
           <tbody>
             <tr>
-              <td className="font-bold p-2">نوع جایزه:</td>
-              <td className="p-2">سهام خاتم</td>
+              <td className="font-bold p-2">Reward Type:</td>
+              <td className="p-2">Gift Card</td>
             </tr>
             <tr>
               <td className="font-bold p-2">Value:</td>
@@ -64,7 +73,7 @@ const GiftReward: React.FC = () => {
           </tbody>
         </motion.table>
 
-        
+        {/* Call to Action Button */}
         <motion.button
           className="mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-blue-600 transition-all duration-300 ease-in-out w-full"
           initial={{ opacity: 0, y: 20 }}
