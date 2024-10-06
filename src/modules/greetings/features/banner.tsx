@@ -11,7 +11,6 @@ interface GreetingsSectionProps {
 const GreetingsSection: React.FC<GreetingsSectionProps> = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-6">
-      {/* Company Logo Animation */}
       <motion.img
         src={Logoa}
         alt="Company Logo"
