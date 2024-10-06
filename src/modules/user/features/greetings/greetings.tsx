@@ -4,7 +4,7 @@ import Logoa from "../../../../../public/bahar.png";
 
 // Define the props interface
 interface GreetingsSectionProps {
-  handleClick: () => void; // Specify that handleClick is a function
+  handleClick: () => void; 
 }
 
 const GreetingsSection: React.FC<GreetingsSectionProps> = ({ handleClick }) => {
