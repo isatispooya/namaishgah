@@ -2,15 +2,23 @@ import { motion } from "framer-motion";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { Gift } from "../../types";
+
 interface QaAnsewerProps {
   giftData: Gift;
+  correctAnswersCount: number;
 }
-const GiftReward: React.FC<QaAnsewerProps> = (giftData) => {
-  console.log(giftData);
-  
+
+const GiftReward: React.FC<QaAnsewerProps> = ({
+  giftData,
+  correctAnswersCount,
+}) => {
+  const { ویسا, بازرگام, مفتول, خاتم, ترمه } = giftData;
+
+  const starsCount = correctAnswersCount + 1;
+
   return (
     <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-white to-blue-400 text-white overflow-hidden p-8">
-      <div className="relative z-10 bg-white rounded-lg shadow-lg p-12 max-w-2xl w-full text-gray-800">
+      <div className="relative z-10 bg-white rounded-xl shadow-xl p-12 max-w-lg w-full text-gray-800 text-right">
         <motion.div
           className="absolute top-4 left-4 w-10 h-10 bg-purple-300 rounded-full opacity-50"
           animate={{ y: [0, -10, 0], x: [0, 10, 0] }}
@@ -29,61 +37,92 @@ const GiftReward: React.FC<QaAnsewerProps> = (giftData) => {
 
         <motion.div
           className="flex justify-center mb-6"
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: -200 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
+          transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
         >
-          {[...Array(3)].map((_, index) => (
-            <FaStar key={index} className="text-yellow-500  mx-1 text-5xl" />
+          {[...Array(starsCount)].map((_, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.6, rotate: 0 }}
+              animate={{
+                opacity: [0.6, 1],
+                scale: index === 1 ? 1.4 : 1,
+                rotate: [0, 360],
+              }}
+              transition={{
+                delay: 0.5 + index * 0.3,
+                duration: 1.5,
+                ease: "easeInOut",
+              }}
+              style={{
+                y: index === 1 ? -30 : 10,
+                filter: "drop-shadow(0px 0px 8px rgba(255, 215, 0, 0.8))",
+              }}
+            >
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  duration: 2,
+                }}
+              >
+                <FaStar className="text-yellow-500 mx-1 text-5xl" />
+              </motion.div>
+            </motion.div>
           ))}
         </motion.div>
+
         <motion.h2
-          className="text-2xl font-bold mb-4 text-center"
+          className="text-3xl font-extrabold text-center text-gray-800 mb-2"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
         >
-          تبریک شما برنده شدید
+          ! تبریک، شما برنده شدید
         </motion.h2>
+
+        <motion.p
+          className=" font-semibold text-center text-gray-600 mt-2 mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 1, ease: "easeOut" }}
+        >
+          از همراهی شما سپاسگزاریم
+        </motion.p>
+
         <motion.table
-          className="w-full text-left mb-6"
+          className="w-full text-right mb-6 border-collapse"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1, ease: "easeOut" }}
         >
           <tbody>
-            <tr>
-              <td className="font-bold p-2">Reward Type:</td>
-              <td className="p-2">Gift Card</td>
+            <tr className="border-b">
+              <td className="p-3 text-gray-600">{ویسا}</td>
+              <td className="font-bold p-3 text-gray-700">ویسا</td>
+            </tr>
+            <tr className="border-b">
+              <td className="p-3 text-gray-600">{بازرگام}</td>
+              <td className="font-bold p-3 text-gray-700">بازرگام</td>
+            </tr>
+            <tr className="border-b">
+              <td className="p-3 text-gray-600">{مفتول}</td>
+              <td className="font-bold p-3 text-gray-700">مفتول</td>
+            </tr>
+            <tr className="border-b">
+              <td className="p-3 text-gray-600">{خاتم}</td>
+              <td className="font-bold p-3 text-gray-700">خاتم</td>
             </tr>
             <tr>
-              <td className="font-bold p-2">Value:</td>
-              <td className="p-2">$50</td>
-            </tr>
-            <tr>
-              <td className="font-bold p-2">Valid Until:</td>
-              <td className="p-2">31st December 2024</td>
-            </tr>
-            <tr>
-              <td className="font-bold p-2">Redeem Code:</td>
-              <td className="p-2">ABC123XYZ</td>
-            </tr>
-            <tr>
-              <td className="font-bold p-2">Terms & Conditions:</td>
-              <td className="p-2">Applicable for online purchases only.</td>
+              <td className="p-3 text-gray-600">{ترمه}</td>
+              <td className="font-bold p-3 text-gray-700">ترمه</td>
             </tr>
           </tbody>
         </motion.table>
-        <motion.button
-          className="mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-blue-600 transition-all duration-300 ease-in-out w-full"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          دریافت جایزه
-        </motion.button>
       </div>
     </div>
   );
