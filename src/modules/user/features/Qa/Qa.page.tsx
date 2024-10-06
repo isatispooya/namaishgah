@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import RandomQuiz from "./Qa.feature";
 import { motion } from "framer-motion";
 
-const QaPage: React.FC = () => {
-  const [showReward, setShowReward] = useState(false);
-
+interface QaPageProps {
+  onFinishTest: () => void; // Define the prop for finishing the test
+}
+const QaPage: React.FC<QaPageProps> = ({ onFinishTest }) => {
   const iconVariants = {
     initial: { y: 0, rotate: 0, scale: 1 },
     animate: {
@@ -93,7 +94,7 @@ const QaPage: React.FC = () => {
           شده است. با پاسخ به سوالات، می‌توانید دانش خود را ارزیابی کرده و با
           مفاهیم مختلف بازار سرمایه آشنا شوید
         </p>
-        <RandomQuiz />
+        <RandomQuiz onFinishTest={onFinishTest} /> 
       </div>
     </div>
   );

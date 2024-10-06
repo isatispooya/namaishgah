@@ -4,7 +4,12 @@ import { Qas } from "../../data/Qa.data";
 import { motion } from "framer-motion";
 import { FaQuestionCircle, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
-const RandomQuiz: React.FC = () => {
+
+
+interface RandomQuizProps {
+  onFinishTest: () => void;
+}
+const RandomQuiz: React.FC<RandomQuizProps> = ({ onFinishTest }) => {
   const [selectedQuestions, setSelectedQuestions] = useState<Qa[]>([]);
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: number]: string;
@@ -239,9 +244,7 @@ const RandomQuiz: React.FC = () => {
                 <motion.button
                   className="mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300"
                   onClick={() => {
-                    alert(
-                      `آزمون به پایان رسید! تعداد پاسخ‌های درست: ${correctAnswersCount}`
-                    );
+                    onFinishTest(); 
                   }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

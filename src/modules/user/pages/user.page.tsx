@@ -5,11 +5,16 @@ import QaPage from "../features/Qa/Qa.page";
 
 const UserPage = () => {
   const [goToQa, setGoToQa] = useState(false);
-  const qaRef = useRef<HTMLDivElement | null>(null); 
+  const [testFinished, setTestFinished] = useState(false); // Track test completion state
+  const qaRef = useRef<HTMLDivElement | null>(null); // Create a ref for QaPage
 
   const handleClick = () => {
-    console.log("handleClick");
-    setGoToQa(true);
+  
+    setGoToQa(true); 
+  };
+
+  const handleTestFinish = () => {
+    setTestFinished(true); 
   };
 
 
@@ -21,13 +26,15 @@ const UserPage = () => {
 
   return (
     <>
-      {!goToQa && <GreetingsSection handleClick={handleClick} />} 
-      {goToQa && (
+      {!goToQa && !testFinished && (
+        <GreetingsSection handleClick={handleClick} />
+      )} {/* Hide GreetingsSection when goToQa is true */}
+      {!testFinished && goToQa && (
         <div ref={qaRef}>
-          <QaPage />
+          <QaPage onFinishTest={handleTestFinish} /> {/* Pass onFinishTest to QaPage */}
         </div>
       )}
-    
+      {testFinished && <GiftReward />} 
     </>
   );
 };
