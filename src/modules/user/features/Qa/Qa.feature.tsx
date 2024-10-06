@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Qa } from "../types";
-import { Qas } from "../data/Qa.data";
+import { Qa } from "../../types";
+import { Qas } from "../../data/Qa.data";
 import { motion } from "framer-motion";
 import { FaQuestionCircle, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 

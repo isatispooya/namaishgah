@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import Logoa from "../../../../public/bahar.png";
+import Logoa from "../../../../../public/bahar.png";
 
 const GreetingsSection: React.FC = () => {
   const circleVariants = {

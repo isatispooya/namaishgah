@@ -1,5 +1,5 @@
 import React from "react";
-import RandomQuiz from "../features/Qa.feature";
+import RandomQuiz from "./Qa.feature";
 import { motion } from "framer-motion";
 
 const QaPage: React.FC = () => {

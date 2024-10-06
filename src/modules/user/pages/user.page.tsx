@@ -1,6 +1,7 @@
-import GiftReward from "../../gift/features/mainGift";
-import GreetingsSection from "../../greetings/features/banner";
-import QaPage from "./Qa.page";
+import GiftReward from "../features/gift/mainGift";
+import GreetingsSection from "../features/greetings/banner";
+import QaPage from "../features/Qa/Qa.page";
+
 
 const UserPage = () => {
   return (
