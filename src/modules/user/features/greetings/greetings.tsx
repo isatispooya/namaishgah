@@ -2,13 +2,12 @@ import { motion } from "framer-motion";
 import React from "react";
 import Logoa from "../../../../../public/bahar.png";
 
+// Define the props interface
+interface GreetingsSectionProps {
+  handleClick: () => void; // Specify that handleClick is a function
+}
 
-const GreetingsSection: React.FC = ({handleClick}) => {
-
-
- 
-
-
+const GreetingsSection: React.FC<GreetingsSectionProps> = ({ handleClick }) => {
   const circleVariants = {
     animate: {
       scale: [1, 1.4, 1],
@@ -66,7 +65,7 @@ const GreetingsSection: React.FC = ({handleClick}) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
         >
-          isatispooya
+          ایساتیس پویا
         </motion.h1>
 
         <motion.p
@@ -75,7 +74,7 @@ const GreetingsSection: React.FC = ({handleClick}) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 1, ease: "easeOut" }}
         >
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.
+         گروه مالی و سرمایه گذاری
         </motion.p>
 
         <motion.button
