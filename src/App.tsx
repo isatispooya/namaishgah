@@ -1,18 +1,20 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import LoginPage from "./modules/admin/pages/Login.page";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AddClient from "./modules/admin/featuers/AddClient";
-import Home from "./pages/home";
+
+import UserPage from "./modules/user/pages/user.page";
 
 function App() {
   const queryClient = new QueryClient();
+  const { uuid } = useParams<{ uuid: string }>();
 
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
-          <Route path="/" element={<Home />} />
+            <Route path={`/gift/:${uuid}`} element={<UserPage />} />
 
             <Route path="/admin" element={<LoginPage />} />
             <Route path="/admin/addclient" element={<AddClient />} />

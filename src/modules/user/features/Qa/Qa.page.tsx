@@ -1,9 +1,8 @@
 import React from "react";
-import RandomQuiz from "../features/Qa.feature";
+import RandomQuiz from "./Qa.feature";
 import { motion } from "framer-motion";
 
 const QaPage: React.FC = () => {
-  // انیمیشن برای آیکون‌ها
   const iconVariants = {
     initial: { y: 0, rotate: 0, scale: 1 },
     animate: {
@@ -20,7 +19,6 @@ const QaPage: React.FC = () => {
 
   return (
     <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-white to-blue-400 text-white overflow-hidden p-8">
-      {/* آیکون‌های متحرک در اطراف صفحه */}
       <motion.div
         className="absolute text-[80px] text-blue-300 opacity-40 top-10 left-5"
         variants={iconVariants}
@@ -86,11 +84,8 @@ const QaPage: React.FC = () => {
         ✔️
       </motion.div>
 
-      {/* باکس آزمون */}
       <div className="relative bg-white text-gray-700 shadow-2xl rounded-3xl p-10 w-full max-w-2xl transition-all transform rtl z-10">
-        <h1 className="text-3xl font-bold text-center mb-6">
-          آزمون تصادفی
-        </h1>
+        <h1 className="text-3xl font-bold text-center mb-6">آزمون تصادفی</h1>
         <p className="text-right mb-8">
           سوالات را انتخاب کنید و جواب درست یا غلط را بلافاصله مشاهده کنید
         </p>

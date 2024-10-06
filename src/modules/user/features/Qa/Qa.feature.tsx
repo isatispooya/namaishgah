@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Qa } from "../types";
-import { Qas } from "../data/Qa.data";
+import { Qa } from "../../types";
+import { Qas } from "../../data/Qa.data";
 import { motion } from "framer-motion";
 import { FaQuestionCircle, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
@@ -16,6 +16,7 @@ const RandomQuiz: React.FC = () => {
   const [particlesType, setParticlesType] = useState<
     "correct" | "incorrect" | null
   >(null);
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
 
   useEffect(() => {
     const randomQuestions = Qas.sort(() => 0.5 - Math.random()).slice(0, 2);
@@ -33,23 +34,26 @@ const RandomQuiz: React.FC = () => {
     setResults((prev) => ({ ...prev, [questionIndex]: isCorrect }));
     setShowNextButton(true);
 
-    // تنظیم افکت ذرات براساس درست یا غلط بودن پاسخ
     if (isCorrect) {
       setParticlesType("correct");
+      setCorrectAnswersCount((prevCount) => prevCount + 1);
     } else {
       setParticlesType("incorrect");
     }
     setShowParticles(true);
-    setTimeout(() => setShowParticles(false), 2000); // بعد از 2 ثانیه افکت را حذف کن
+    setTimeout(() => setShowParticles(false), 2000);
   };
 
   const handleNextQuestion = () => {
     setShowNextButton(false);
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-    setParticlesType(null); // بازنشانی ذرات
+    setParticlesType(null);
   };
 
-  // انیمیشن ذرات برای پاسخ صحیح
+  useEffect(() => {
+    console.log("تعداد پاسخ‌های درست:", correctAnswersCount);
+  }, [correctAnswersCount]);
+
   const correctParticlesAnimation = {
     hidden: { opacity: 0, y: 0 },
     visible: {
@@ -59,7 +63,6 @@ const RandomQuiz: React.FC = () => {
     },
   };
 
-  // انیمیشن ذرات برای پاسخ غلط
   const incorrectParticlesAnimation = {
     hidden: { opacity: 0, y: 0 },
     visible: {
@@ -71,7 +74,6 @@ const RandomQuiz: React.FC = () => {
 
   return (
     <div className="quiz-container rtl relative">
-      {/* افکت برای پاسخ صحیح */}
       {showParticles && particlesType === "correct" && (
         <motion.div
           className="absolute inset-0 flex justify-center items-center"
@@ -79,7 +81,6 @@ const RandomQuiz: React.FC = () => {
           animate="visible"
           variants={correctParticlesAnimation}
         >
-          {/* ذرات برای پاسخ درست */}
           {[...Array(10)].map((_, i) => (
             <motion.div
               key={i}
@@ -104,7 +105,6 @@ const RandomQuiz: React.FC = () => {
         </motion.div>
       )}
 
-      {/* افکت برای پاسخ غلط */}
       {showParticles && particlesType === "incorrect" && (
         <motion.div
           className="absolute inset-0 flex justify-center items-center"
@@ -112,7 +112,6 @@ const RandomQuiz: React.FC = () => {
           animate="visible"
           variants={incorrectParticlesAnimation}
         >
-          {/* ذرات برای پاسخ غلط */}
           {[...Array(10)].map((_, i) => (
             <motion.div
               key={i}
