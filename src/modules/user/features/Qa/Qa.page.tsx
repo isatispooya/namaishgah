@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import RandomQuiz from "./Qa.feature";
 import { motion } from "framer-motion";
 
 const QaPage: React.FC = () => {
+
+  const [showReward , setShowReward] = useState(false)
+  
   const iconVariants = {
     initial: { y: 0, rotate: 0, scale: 1 },
     animate: {

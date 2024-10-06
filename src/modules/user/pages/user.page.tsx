@@ -1,21 +1,33 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import GiftReward from "../features/gift/mainGift";
 import GreetingsSection from "../features/greetings/greetings";
 import QaPage from "../features/Qa/Qa.page";
 
 const UserPage = () => {
+  const [goToQa, setGoToQa] = useState(false);
+  const qaRef = useRef<HTMLDivElement | null>(null); 
 
-    const [goToQa , setGoToQa] = useState(false)
+  const handleClick = () => {
+    console.log("handleClick");
+    setGoToQa(true);
+  };
 
-    const HandleClick = () => {
-        return(<QaPage />)
 
+  useEffect(() => {
+    if (goToQa && qaRef.current) {
+      qaRef.current.scrollIntoView({ behavior: "smooth" });
     }
+  }, [goToQa]);
+
   return (
     <>
-      <GreetingsSection onclick={HandleClick} />
-      <QaPage />
-      <GiftReward />
+      {!goToQa && <GreetingsSection handleClick={handleClick} />} 
+      {goToQa && (
+        <div ref={qaRef}>
+          <QaPage />
+        </div>
+      )}
+    
     </>
   );
 };
