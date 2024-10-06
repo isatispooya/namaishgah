@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLogin } from "../services";
 import { Admin } from "../types";
+import { setCookie } from "../../cookie";
+import { AdminValid } from "../data";
 
 const Login: React.FC = () => {
-  const validAdmin: Admin = { username: 'admin', password: 'isatis' };
   const navigate = useNavigate();
 
   const [admin, setAdmin] = useState<Admin>({ username: '', password: '' });
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const { mutate } = useLogin();
+
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (admin.username === validAdmin.username && admin.password === validAdmin.password) {
-      mutate(admin);
+    if (admin.username === AdminValid.username && admin.password === AdminValid.password) {
+      setCookie('admin',JSON.stringify(admin),65)
       navigate("./addclient");
     } else {
       setErrorMessage("نام کاربری یا رمز عبور اشتباه است");

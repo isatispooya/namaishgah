@@ -4,7 +4,7 @@ import { FaStar } from 'react-icons/fa';
 
 const GiftReward: React.FC = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-white to-blue-500 text-white overflow-hidden p-8">
+    <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-white to-blue-400 text-white overflow-hidden p-8">
       {/* Reward Content */}
       <div className="relative z-10 bg-white rounded-lg shadow-lg p-12 max-w-2xl w-full text-gray-800">
         {/* Infinite Motion Bubbles Inside Box */}
