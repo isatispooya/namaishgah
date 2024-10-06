@@ -12,8 +12,7 @@ const UserPage = () => {
   const [goToQa, setGoToQa] = useState(false);
   const [testFinished, setTestFinished] = useState(false);
   const qaRef = useRef<HTMLDivElement | null>(null);
-  // const [correctAnswersCount, setCorrectAnswersCount] = useState<number>(0);
-  const correctAnswersCount: number = 0
+  const [correctAnswersCount, setCorrectAnswersCount] = useState<number>(0);
   const navigate = useNavigate();
 
   const { uuid } = useParams<{ uuid: string }>();
@@ -60,9 +59,10 @@ const UserPage = () => {
         <QaPage
           onFinishTest={handleTestFinish}
           correctAnswersCount={correctAnswersCount}
+          setCorrectAnswersCount={setCorrectAnswersCount}
         />
       )}
-      {testFinished && giftData && <GiftReward giftData={giftData} correctAnswersCount={correctAnswersCount} />}
+      {testFinished && giftData && <GiftReward giftData={giftData} correctAnswersCount={correctAnswersCount}  />}
       {isError && <div>Error occurred: {error?.message}</div>}
     </>
   );

@@ -4,15 +4,16 @@ import { Qas } from "../../data/Qa.data";
 import { motion } from "framer-motion";
 import { FaQuestionCircle, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
-
-
 interface RandomQuizProps {
   onFinishTest: () => void;
-  // setCorrectAnswersCount:React.Dispatch<React.SetStateAction<number>>
-  correctAnswersCount:number
+  setCorrectAnswersCount: React.Dispatch<React.SetStateAction<number>>;
+  correctAnswersCount: number;
 }
-const RandomQuiz: React.FC<RandomQuizProps> = ({ onFinishTest,correctAnswersCount }) => {
-
+const RandomQuiz: React.FC<RandomQuizProps> = ({
+  onFinishTest,
+  correctAnswersCount,
+  setCorrectAnswersCount,
+}) => {
   const [selectedQuestions, setSelectedQuestions] = useState<Qa[]>([]);
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: number]: string;
@@ -43,7 +44,7 @@ const RandomQuiz: React.FC<RandomQuizProps> = ({ onFinishTest,correctAnswersCoun
 
     if (isCorrect) {
       setParticlesType("correct");
-      // setCorrectAnswersCount((prevCount: number) => prevCount + 1); 
+      setCorrectAnswersCount((prevCount: number) => prevCount + 1);
     } else {
       setParticlesType("incorrect");
     }
@@ -246,7 +247,7 @@ const RandomQuiz: React.FC<RandomQuizProps> = ({ onFinishTest,correctAnswersCoun
                 <motion.button
                   className="mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300"
                   onClick={() => {
-                    onFinishTest(); 
+                    onFinishTest();
                   }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

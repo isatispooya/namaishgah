@@ -3,11 +3,10 @@ import React from "react";
 import Logoa from "../../../../../public/bahar.png";
 
 interface GreetingsSectionProps {
-  handleClick: () => void;
+  handleClick: React.Dispatch<React.SetStateAction<void>>;
 }
 
 const GreetingsSection: React.FC<GreetingsSectionProps> = ({ handleClick }) => {
-
   const circleVariants = {
     animate: {
       scale: [1, 1.4, 1],
