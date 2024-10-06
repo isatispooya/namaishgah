@@ -15,17 +15,18 @@ const GiftReward: React.FC<QaAnsewerProps> = ({
 }) => {
   const { ویسا, بازرگام, مفتول, خاتم, ترمه } = giftData;
 
-  const [actGardon, setActGardon] = useState(false)
+  const [actGardon, setActGardon] = useState(false);
 
   const starsCount = correctAnswersCount + 1;
   if (!actGardon) {
-    return(
-      <div onClick={()=>setActGardon(true)} className="flex items-center justify-center">
-        
-      <Gardon />
+    return (
+      <div
+        onClick={() => setActGardon(true)}
+        className="flex items-center justify-center h-screen w-full"
+      >
+        <Gardon />
       </div>
-    )
-    
+    );
   }
 
   return (
