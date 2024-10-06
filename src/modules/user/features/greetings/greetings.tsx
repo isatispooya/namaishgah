@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import React from "react";
 import Logoa from "../../../../../public/bahar.png";
 
-// Define the props interface
 interface GreetingsSectionProps {
-  handleClick: () => void; 
+  handleClick: () => void;
 }
 
 const GreetingsSection: React.FC<GreetingsSectionProps> = ({ handleClick }) => {
+
   const circleVariants = {
     animate: {
       scale: [1, 1.4, 1],
@@ -74,7 +74,7 @@ const GreetingsSection: React.FC<GreetingsSectionProps> = ({ handleClick }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 1, ease: "easeOut" }}
         >
-         گروه مالی و سرمایه گذاری
+          گروه مالی و سرمایه گذاری
         </motion.p>
 
         <motion.button
