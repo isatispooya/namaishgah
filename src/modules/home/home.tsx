@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
-import React from "react";
 import Logoa from "../../../public/bahar.png";
 
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   const circleVariants = {
     animate: {
       scale: [1, 1.4, 1],
