@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 
 interface QaPageProps {
   onFinishTest: () => void;
-  setCorrectAnswersCount:()=>number
+  // setCorrectAnswersCount:()=>number
   correctAnswersCount:number
   }
 
-const QaPage: React.FC<QaPageProps> = ({ onFinishTest ,correctAnswersCount,setCorrectAnswersCount}) => {
+const QaPage: React.FC<QaPageProps> = ({ onFinishTest ,correctAnswersCount}) => {
   const iconVariants = {
     initial: { y: 0, rotate: 0, scale: 1 },
     animate: {
@@ -97,7 +97,7 @@ const QaPage: React.FC<QaPageProps> = ({ onFinishTest ,correctAnswersCount,setCo
           شده است. با پاسخ به سوالات، می‌توانید دانش خود را ارزیابی کرده و با
           مفاهیم مختلف بازار سرمایه آشنا شوید
         </p>
-        <RandomQuiz onFinishTest={onFinishTest} correctAnswersCount={correctAnswersCount} setCorrectAnswersCount={setCorrectAnswersCount}/> 
+        <RandomQuiz onFinishTest={onFinishTest} correctAnswersCount={correctAnswersCount} /> 
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import GiftReward from "../features/gift/mainGift";
@@ -11,7 +12,8 @@ const UserPage = () => {
   const [goToQa, setGoToQa] = useState(false);
   const [testFinished, setTestFinished] = useState(false);
   const qaRef = useRef<HTMLDivElement | null>(null);
-  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  // const [correctAnswersCount, setCorrectAnswersCount] = useState<number>(0);
+  const correctAnswersCount: number = 0
   const navigate = useNavigate();
 
   const { uuid } = useParams<{ uuid: string }>();
@@ -31,7 +33,7 @@ const UserPage = () => {
     setTestFinished(true);
     if (uuid) {
       mutate(correctAnswersCount, {
-        onError: (error: unknown) => {
+        onError: (error: any) => {
           if (error.response?.status === 400) {
             navigate("/");
           }
@@ -58,7 +60,6 @@ const UserPage = () => {
         <QaPage
           onFinishTest={handleTestFinish}
           correctAnswersCount={correctAnswersCount}
-          setCorrectAnswersCount={setCorrectAnswersCount}
         />
       )}
       {testFinished && giftData && <GiftReward giftData={giftData} correctAnswersCount={correctAnswersCount} />}

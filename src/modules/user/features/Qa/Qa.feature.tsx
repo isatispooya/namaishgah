@@ -8,10 +8,11 @@ import { FaQuestionCircle, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 interface RandomQuizProps {
   onFinishTest: () => void;
-  setCorrectAnswersCount:()=>number
+  // setCorrectAnswersCount:React.Dispatch<React.SetStateAction<number>>
   correctAnswersCount:number
 }
-const RandomQuiz: React.FC<RandomQuizProps> = ({ onFinishTest,correctAnswersCount,setCorrectAnswersCount }) => {
+const RandomQuiz: React.FC<RandomQuizProps> = ({ onFinishTest,correctAnswersCount }) => {
+
   const [selectedQuestions, setSelectedQuestions] = useState<Qa[]>([]);
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: number]: string;
@@ -42,7 +43,7 @@ const RandomQuiz: React.FC<RandomQuizProps> = ({ onFinishTest,correctAnswersCoun
 
     if (isCorrect) {
       setParticlesType("correct");
-      setCorrectAnswersCount((prevCount: number) => prevCount + 1);
+      // setCorrectAnswersCount((prevCount: number) => prevCount + 1); 
     } else {
       setParticlesType("incorrect");
     }
