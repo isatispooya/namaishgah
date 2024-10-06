@@ -5,12 +5,13 @@ import QaPage from "../features/Qa/Qa.page";
 
 const UserPage = () => {
   const [goToQa, setGoToQa] = useState(false);
-  const qaRef = useRef<HTMLDivElement | null>(null);
+  const qaRef = useRef<HTMLDivElement | null>(null); 
 
   const handleClick = () => {
     console.log("handleClick");
     setGoToQa(true);
   };
+
 
   useEffect(() => {
     if (goToQa && qaRef.current) {
@@ -20,13 +21,13 @@ const UserPage = () => {
 
   return (
     <>
-      <GreetingsSection handleClick={handleClick} />
+      {!goToQa && <GreetingsSection handleClick={handleClick} />} 
       {goToQa && (
         <div ref={qaRef}>
           <QaPage />
         </div>
       )}
-      
+    
     </>
   );
 };
