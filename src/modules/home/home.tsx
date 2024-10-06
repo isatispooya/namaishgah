@@ -74,7 +74,7 @@ const HomePage: React.FC = () => {
         </motion.p>
       </div>
       <motion.span
-          className="text-lg md:text-xl font-semibold leading-relaxed max-w-lg text-black mt-6"
+          className="text-lg md:text-xl text-wrap text-center font-semibold leading-relaxed max-w-lg text-black mt-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 1, ease: "easeOut" }}

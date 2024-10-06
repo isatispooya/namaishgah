@@ -5,8 +5,10 @@ import AddClient from "./modules/admin/featuers/AddClient";
 import UserPage from "./modules/user/pages/user.page";
 import HomePage from "./modules/home/home";
 
+
 function App() {
   const queryClient = new QueryClient();
+
 
   return (
     <div className="App">
