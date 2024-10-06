@@ -16,7 +16,7 @@ const UserPage = () => {
   const navigate = useNavigate();
 
   const { uuid } = useParams<{ uuid: string }>();
-  const { data: giftData, error, isError, mutate } = usePostGift(uuid || "");
+  const { data: giftData, error, isError, mutate } = usePostGift(uuid);
 
 
 
