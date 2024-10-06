@@ -1,45 +1,84 @@
-import { motion } from "framer-motion";
-import React from "react";
-import Logoa from "../../../../public/bahar.png";
+import { motion } from 'framer-motion';
+import React from 'react';
+import Logoa from '../../../../public/bahar.png';
 
 const GreetingsSection: React.FC = () => {
+  const circleVariants = {
+    animate: {
+      scale: [1, 1.4, 1],
+      opacity: [0.4, 0.7, 0.4],
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
+  const lowerCircleVariants = {
+    animate: {
+      opacity: [0.6, 0.8, 0.6],
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-white p-4  md:p-8 md:flex-row-reverse">
+    <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-white to-blue-400 text-white overflow-hidden">
+      <motion.div
+        className="absolute top-20 left-20 w-40 h-40 bg-gradient-to-r from-purple-300 to-purple-500 rounded-full shadow-lg"
+        variants={circleVariants}
+        animate="animate"
+      ></motion.div>
+      <motion.div
+        className="absolute bottom-10 right-10 w-32 h-32 bg-white rounded-full shadow-lg"
+        variants={lowerCircleVariants}
+        animate="animate"
+      ></motion.div>
 
       <motion.img
         src={Logoa}
         alt="Company Logo"
-        className="w-24 h-24 md:w-32 md:h-32 rounded-full mb-6 md:mb-0 md:ml-12"
+        className="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-xl mb-6 md:mb-0 z-10"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        whileHover={{ scale: 1.1, rotate: 10 }}
+        whileTap={{ scale: 0.95 }}
       />
 
-      <div
-        dir="rtl"
-        className="flex flex-col items-center md:items-start w-full md:w-auto"
-      >
-        <div>
-          <motion.h1
-            className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 tracking-wide border-b-2 border-gray-300"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
-          >
-            ایساتیس پویا
-          </motion.h1>
-        </div>
+      <div dir="rtl" className="flex flex-col items-center md:items-start text-center md:text-left z-10 mt-6 md:mt-0">
+        <motion.h1
+          className="text-4xl md:text-5xl font-extrabold mb-4 tracking-wide"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1, ease: 'easeOut' }}
+        >
+          isatispooya
+        </motion.h1>
 
-        <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
-          <motion.p
-            className="text-base md:text-lg text-gray-700 leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 1, ease: "easeOut" }}
-          >
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.
-          </motion.p>
-        </div>
+        <motion.p
+          className="text-lg md:text-xl leading-relaxed max-w-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 1, ease: 'easeOut' }}
+        >
+          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.
+        </motion.p>
+
+        <motion.button
+          className="mt-8 px-6 py-3 bg-teal-500 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-teal-600 transition-all duration-300 ease-in-out"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 1, ease: 'easeOut' }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          شروع کنید
+        </motion.button>
       </div>
     </div>
   );
