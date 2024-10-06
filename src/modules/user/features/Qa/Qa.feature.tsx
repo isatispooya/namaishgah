@@ -16,7 +16,7 @@ const RandomQuiz: React.FC = () => {
   const [particlesType, setParticlesType] = useState<
     "correct" | "incorrect" | null
   >(null);
-  const [correctAnswersCount, setCorrectAnswersCount] = useState(0); 
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
 
   useEffect(() => {
     const randomQuestions = Qas.sort(() => 0.5 - Math.random()).slice(0, 2);
@@ -36,7 +36,7 @@ const RandomQuiz: React.FC = () => {
 
     if (isCorrect) {
       setParticlesType("correct");
-      setCorrectAnswersCount((prevCount) => prevCount + 1); 
+      setCorrectAnswersCount((prevCount) => prevCount + 1);
     } else {
       setParticlesType("incorrect");
     }
@@ -51,7 +51,7 @@ const RandomQuiz: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log("تعداد پاسخ‌های درست:", correctAnswersCount); 
+    console.log("تعداد پاسخ‌های درست:", correctAnswersCount);
   }, [correctAnswersCount]);
 
   const correctParticlesAnimation = {
