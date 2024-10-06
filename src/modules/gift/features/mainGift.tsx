@@ -32,7 +32,7 @@ const GiftReward: React.FC = () => {
         >
           Congratulations! You've Earned a Reward!
         </motion.h2>
-
+     
         {/* Reward Details Table */}
         <motion.table
           className="w-full text-left mb-6"
@@ -64,7 +64,7 @@ const GiftReward: React.FC = () => {
           </tbody>
         </motion.table>
 
-        {/* Call to Action Button */}
+        
         <motion.button
           className="mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-blue-600 transition-all duration-300 ease-in-out w-full"
           initial={{ opacity: 0, y: 20 }}
