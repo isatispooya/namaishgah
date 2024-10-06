@@ -6,7 +6,7 @@ import GreetingsSection from "../features/greetings/greetings";
 import QaPage from "../features/Qa/Qa.page";
 import usePostGift from "../service/useGift";
 import { useNavigate, useParams } from "react-router-dom";
-import useGetValidation from "../hooks/useGetValidation";
+
 
 const UserPage = () => {
   const [goToQa, setGoToQa] = useState(false);
@@ -19,11 +19,9 @@ const UserPage = () => {
   const { uuid } = useParams<{ uuid: string }>();
   const { data: giftData, error, isError, mutate } = usePostGift(uuid || "");
 
-  const { isError: notValidate } = useGetValidation(uuid || "");
 
-  if (notValidate) {
-    navigate("/");
-  }
+
+
 
   const handleClick = () => {
     setGoToQa(true);
