@@ -94,7 +94,7 @@ const GreetingsSection: React.FC<GreetingsSectionProps> = ({ handleClick }) => {
             whileTap={{ scale: 0.95 }}
             onClick={handleClick}
           >
-            شروع کنید
+             تشکیل سبد دارایی
           </motion.button>
         )}
       </div>
