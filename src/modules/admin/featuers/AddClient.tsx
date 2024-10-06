@@ -1,11 +1,23 @@
-import React, { useState } from "react";
-import { useLogin } from "../services";
+import React, { useState, useEffect } from "react";
+import { getCookie } from "../../cookie";
+import { AdminValid } from "../data";
+import { useNavigate } from "react-router-dom";
 
 const AddClient: React.FC = () => {
   const [mobileNumber, setMobileNumber] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const { data } = useLogin();
-console.log("data",data)
+  const navigate = useNavigate();
+
+  const admin = JSON.parse(getCookie("admin"));
+  useEffect(() => {
+    if (
+      admin.username != AdminValid.username &&
+      admin.password != AdminValid.password
+    ) {
+      navigate("./admin");
+    }
+  }, [admin, navigate]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -23,48 +35,44 @@ console.log("data",data)
       dir="rtl"
       className="min-h-screen flex items-center justify-center bg-gray-100"
     >
-      {data ? (
-        <div className="w-full max-w-md p-8 space-y-8 bg-white shadow-lg rounded-lg">
-          <h2 className="text-3xl font-bold text-center">ورود شماره موبایل</h2>
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="rounded-md shadow-sm space-y-4">
-              <div>
-                <label
-                  htmlFor="mobileNumber"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  شماره موبایل
-                </label>
-                <input
-                  id="mobileNumber"
-                  name="mobileNumber"
-                  type="text"
-                  value={mobileNumber}
-                  onChange={(e) => setMobileNumber(e.target.value)}
-                  required
-                  className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  placeholder="شماره موبایل"
-                />
-              </div>
-            </div>
-
-            {errorMessage && (
-              <p className="text-red-500 text-sm">{errorMessage}</p>
-            )}
-
+      <div className="w-full max-w-md p-8 space-y-8 bg-white shadow-lg rounded-lg">
+        <h2 className="text-3xl font-bold text-center">ورود شماره موبایل</h2>
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <div className="rounded-md shadow-sm space-y-4">
             <div>
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              <label
+                htmlFor="mobileNumber"
+                className="block text-sm font-medium text-gray-700"
               >
-                ارسال
-              </button>
+                شماره موبایل
+              </label>
+              <input
+                id="mobileNumber"
+                name="mobileNumber"
+                type="text"
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
+                required
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="شماره موبایل"
+              />
             </div>
-          </form>
-        </div>
-      ) : (
-        <p>در حال بارگذاری...</p>
-      )}
+          </div>
+
+          {errorMessage && (
+            <p className="text-red-500 text-sm">{errorMessage}</p>
+          )}
+
+          <div>
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              ارسال
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
