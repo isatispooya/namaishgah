@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { Admin } from "../types";
 import { setCookie } from "../../cookie";
 import { AdminValid } from "../data";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // اضافه کردن آیکون‌ها
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; 
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const [admin, setAdmin] = useState<Admin>({ username: '', password: '' });
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [showPassword, setShowPassword] = useState<boolean>(false); // state برای نمایش رمز
+  const [showPassword, setShowPassword] = useState<boolean>(false); 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,7 +55,7 @@ const Login: React.FC = () => {
               <input
                 id="password"
                 name="password"
-                type={showPassword ? "text" : "password"} // نوع ورودی بر اساس showPassword تغییر می‌کند
+                type={showPassword ? "text" : "password"} 
                 value={admin.password}
                 onChange={(e) => setAdmin({ ...admin, password: e.target.value })}
                 required
