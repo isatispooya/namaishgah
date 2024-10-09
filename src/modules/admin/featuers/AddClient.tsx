@@ -4,10 +4,11 @@ import { getCookie } from "../../cookie";
 import { AdminValid } from "../data";
 import { useNavigate } from "react-router-dom";
 import useAddClient from "../services/useAddClient";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddClient: React.FC = () => {
   const [mobileNumber, setMobileNumber] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const navigate = useNavigate();
   const { mutate } = useAddClient();
@@ -15,8 +16,8 @@ const AddClient: React.FC = () => {
   const admin = JSON.parse(getCookie("admin"));
   useEffect(() => {
     if (
-      admin.username != AdminValid.username &&
-      admin.password != AdminValid.password
+      admin.username !== AdminValid.username ||
+      admin.password !== AdminValid.password
     ) {
       navigate("./admin");
     }
@@ -26,21 +27,19 @@ const AddClient: React.FC = () => {
     e.preventDefault();
 
     if (mobileNumber.length !== 11 || !/^[0-9]+$/.test(mobileNumber)) {
-      setErrorMessage("شماره موبایل باید 11 رقم باشد");
+      toast.error("شماره موبایل باید 11 رقم باشد");
       return;
     }
 
     mutate(mobileNumber, {
       onSuccess: () => {
-        setErrorMessage("");
-        alert("شماره موبایل با موفقیت ثبت شد");
+        toast.success("شماره موبایل با موفقیت ثبت شد");
+        setMobileNumber("");
       },
       onError: (error: any) => {
-        if (error.response && error.response.data && error.response.data.error) {
-          setErrorMessage(error.response.data.error);
-        } else {
-          setErrorMessage("خطایی رخ داده است");
-        }
+        const errorMessage = error.response?.data?.error || "این شماره قبلا ثبت شده است ";
+        toast.error(errorMessage);
+        setMobileNumber("");
       },
     });
   };
@@ -74,10 +73,6 @@ const AddClient: React.FC = () => {
             </div>
           </div>
 
-          {errorMessage && (
-            <p className="text-red-500 text-sm">{errorMessage}</p>
-          )}
-
           <div>
             <button
               type="submit"
@@ -88,6 +83,7 @@ const AddClient: React.FC = () => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
