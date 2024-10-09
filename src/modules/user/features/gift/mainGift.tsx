@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Gift } from "../../types";
 import Gardon from "./gardon";
-
+import { FaLink } from "react-icons/fa";
 interface QaAnsewerProps {
   giftData: Gift;
   correctAnswersCount: number;
@@ -22,7 +22,7 @@ const GiftReward: React.FC<QaAnsewerProps> = ({
     return (
       <div
         onClick={() => setActGardon(true)}
-        className="flex items-center justify-center h-screen w-full"
+        className="flex items-center justify-center h-screen w-full bg-gradient-to-r from-white to-blue-400 "
       >
         <Gardon />
       </div>
@@ -115,27 +115,58 @@ const GiftReward: React.FC<QaAnsewerProps> = ({
         >
           <tbody>
             <tr className="border-b">
-              <td className="p-3 text-gray-600">{ویسا}</td>
-              <td className="font-bold p-3 text-gray-700">ویسا</td>
+              <td className="p-3 text-gray-600">تعداد: {ویسا}</td>
+              <td className="font-bold p-3 text-gray-700">
+                <h6>ویسا</h6>
+                <p className="text-xs opacity-70">سرمایه گذاری ایساتیس پویا</p>
+              </td>
             </tr>
             <tr className="border-b">
-              <td className="p-3 text-gray-600">{بازرگام}</td>
-              <td className="font-bold p-3 text-gray-700">بازرگام</td>
+              <td className="p-3 text-gray-600">تعداد: {بازرگام}</td>
+              <td className="font-bold p-3 text-gray-700">
+                <h6>بازرگام</h6>
+                <p className="text-xs opacity-70">شرکت پست بادپا</p>
+              </td>
             </tr>
             <tr className="border-b">
-              <td className="p-3 text-gray-600">{مفتول}</td>
-              <td className="font-bold p-3 text-gray-700">مفتول</td>
+              <td className="p-3 text-gray-600">تعداد: {مفتول}</td>
+              <td className="font-bold p-3 text-gray-700">
+                <h6>مفتول</h6>
+                <p className="text-xs opacity-70">صنایع مفتول</p>
+              </td>
             </tr>
             <tr className="border-b">
-              <td className="p-3 text-gray-600">{خاتم}</td>
-              <td className="font-bold p-3 text-gray-700">خاتم</td>
+              <td className="p-3 text-gray-600">تعداد : {خاتم}</td>
+              <td className="font-bold p-3 text-gray-700">
+                <h6>خاتم</h6>
+                <p className="text-xs opacity-70">صندوق درامد ثابت</p>
+              </td>
             </tr>
             <tr>
-              <td className="p-3 text-gray-600">{ترمه}</td>
-              <td className="font-bold p-3 text-gray-700">ترمه</td>
+              <td className="p-3 text-gray-600"> تعداد :{ترمه}</td>
+              <td className="font-bold p-3 text-gray-700">
+                <h6>ترمه</h6>
+                <p className="text-xs opacity-70">صندوق در سهام</p>
+              </td>
             </tr>
           </tbody>
         </motion.table>
+        <motion.div
+          className=" font-semibold text-center text-gray-600 mt-2 mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 1, ease: "easeOut" }}
+        >
+          برای تخصیص جایزه خود می بایست حداکثر تا تاریخ 1403/07/30 در کارگزاری
+          ایساتیس پویا ثبت نام کنید
+        </motion.div>
+        <a
+          className="text-sm flex items-center text-right  hover:text-blue-500"
+          href="https://isatis.ipb.ir/"
+        >
+          ثبت نام غیر حضوری
+          <FaLink className="m-1" />
+        </a>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ export const Qas: Qa[] = [
       { content: "صندوق ها ", correct: false },
     ],
   },
+  
   {
     question: "ساعت کاری بازار سهام چه موقع است؟",
     answer: [
@@ -17,6 +18,7 @@ export const Qas: Qa[] = [
       { content: "11:30 _15", correct: false },
     ],
   },
+
   {
     question: "صندوق خاتم جزء کدام نوع صندوق است ؟",
     answer: [
@@ -34,6 +36,7 @@ export const Qas: Qa[] = [
       { content: "سهامی", correct: true },
     ],
   },
+
   {
     question: "سبد گردانی اختصاصی به چه معناست ؟",
     answer: [
@@ -42,6 +45,7 @@ export const Qas: Qa[] = [
       { content: "مدیریت دارایی ها ", correct: true },
     ],
   },
+
   {
     question: "نقل و انتقال سهام توسط کدام یک از گزینه های زیر انجام میشود ؟",
     answer: [
@@ -50,6 +54,7 @@ export const Qas: Qa[] = [
       { content: "کار گزاری ایساتیس پویا ", correct: false },
     ],
   },
+
   {
     question: "با کدام یک از ابزار های مالی زیر میتوان سهام را بیمه نمود ؟",
     answer: [
@@ -58,6 +63,7 @@ export const Qas: Qa[] = [
       { content: "شمش طلا ", correct: false },
     ],
   },
+
   {
     question: "نماد معاملاتی شرکت بیمه زندگی ایساتیس پویا چیست ؟",
     answer: [
@@ -66,6 +72,7 @@ export const Qas: Qa[] = [
       { content: "بتیس", correct: true },
     ],
   },
+
   {
     question: "نماد معاملاتی شرکت سرمایه گزاری ایساتیس پویا چیست ؟",
     answer: [
@@ -74,6 +81,7 @@ export const Qas: Qa[] = [
       { content: "پویا", correct: false },
     ],
   },
+
   {
     question: "نماد معاملاتی شرکت پست پیشگامان باد پا چیست ؟",
     answer: [
@@ -82,6 +90,7 @@ export const Qas: Qa[] = [
       { content: "بازرگام", correct: true },
     ],
   },
+
   {
     question: "کدام یک از نماد های زیر بدون ریسک میباشد ؟",
     answer: [
@@ -90,6 +99,7 @@ export const Qas: Qa[] = [
       { content: "ترمه", correct: false },
     ],
   },
+
   {
     question: "گروه پیشگامان کویر یزد جزو کدام نوع از شرکت ها میباشد ؟",
     answer: [
@@ -98,6 +108,7 @@ export const Qas: Qa[] = [
       { content: "تعاونی", correct: true },
     ],
   },
+
   {
     question: "روز های کاری بورس چه روز هایی است ؟",
     answer: [

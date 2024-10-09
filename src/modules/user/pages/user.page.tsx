@@ -24,8 +24,8 @@ const UserPage = () => {
     setTestFinished(true);
     if (uuid) {
       mutate(correctAnswersCount, {
-        onError: (error: any) => {
-          if (error.response?.status === 400) {
+        onError: (error: Error) => {
+          if (error instanceof Response && error.status === 400) {
             navigate("/");
           }
         },
